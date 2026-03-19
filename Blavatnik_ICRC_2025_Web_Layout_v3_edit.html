@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blavatnik Interdisciplinary Cyber Research Center | 2025 Impact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09111f;
+      --panel: #111c2c;
+      --panel2: #152338;
+      --panel3: #0e1726;
+      --ink: #f3f6fb;
+      --muted: #a8b4c7;
+      --gold: #e4b44e;
+      --cyan: #4fd1de;
+      --cyan2: #74e1ea;
+      --purple: #9d87ff;
+      --line: rgba(255, 255, 255, .08);
+      --shadow: 0 18px 50px rgba(0, 0, 0, .35);
+      --radius: 24px;
+      --radius-sm: 16px;
+      --max: 1240px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top right, rgba(79, 209, 222, .12), transparent 28%), radial-gradient(circle at left 20%, rgba(228, 180, 78, .08), transparent 24%), var(--bg);
+      color: var(--ink);
+      font: 16px/1.6 Inter, system-ui, sans-serif
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    .img-safe {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      background: linear-gradient(180deg, #07101d, #0d1727)
+    }
+
+    a {
+      color: var(--cyan2);
+      text-decoration: none
+    }
+
+    a:hover {
+      color: var(--gold)
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 22px
+    }
+
+    section {
+      padding: 88px 0;
+      border-top: 1px solid var(--line)
+    }
+
+    .kicker {
+      display: inline-block;
+      font-size: .78rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 12px
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: Outfit, Inter, sans-serif;
+      line-height: 1.08;
+      margin: 0 0 .5rem
+    }
+
+    h1 {
+      font-size: clamp(3rem, 6vw, 5.6rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      max-width: 9ch;
+      text-wrap: balance
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      font-weight: 800;
+      letter-spacing: -.02em
+    }
+
+    h3 {
+      font-size: 1.35rem;
+      font-weight: 700
+    }
+
+    .deck {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 68ch
+    }
+
+    .lede {
+      font-size: 1.14rem;
+      color: #d6deea;
+      max-width: 64ch
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 26px
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      box-shadow: var(--shadow)
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--gold), #d59a28);
+      color: #0c1220
+    }
+
+    .btn.secondary {
+      border: 1px solid rgba(79, 209, 222, .35);
+      background: rgba(79, 209, 222, .08);
+      color: var(--ink)
+    }
+
+    .hero {
+      padding: 52px 0 54px;
+      border-top: none;
+      position: relative;
+      overflow: hidden
+    }
+
+    .hero-title {
+      max-width: 72ch
+    }
+
+    .hero-title h1 {
+      max-width: none
+    }
+
+    .hero-title .lede {
+      max-width: 68ch
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 28px;
+      align-items: center
+    }
+
+    .hero-copy p {
+      margin: .85rem 0 0
+    }
+
+    .hero-kpis {
+      margin-top: 22px
+    }
+
+    .kpi-wrap {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .025));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: var(--shadow)
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px
+    }
+
+    .kpi-card {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .03));
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px 16px;
+      box-shadow: var(--shadow)
+    }
+
+    .kpi-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, rgba(228, 180, 78, .65), rgba(79, 209, 222, .55))
+    }
+
+    .kpi-card strong {
+      display: block;
+      font: 800 clamp(2rem, 4vw, 3.3rem)/.92 Outfit, sans-serif;
+      letter-spacing: -.03em;
+      color: #fff;
+      margin-top: 6px
+    }
+
+    .kpi-card .label {
+      display: block;
+      margin-top: 10px;
+      color: rgba(208, 218, 232, .92);
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 800
+    }
+
+    .hero-collage {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      grid-template-rows: 240px 240px;
+      gap: 14px
+    }
+
+    .hero-collage figure,
+    .photo-card figure,
+    .mosaic figure,
+    .conf-gallery figure,
+    .media-card figure {
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      background: #08101b;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px
+    }
+
+    .hero-collage img,
+    .photo-card img,
+    .mosaic img,
+    .conf-gallery img,
+    .media-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform .35s ease
+    }
+
+    figure:hover img {
+      transform: scale(1.04)
+    }
+
+    .hero-collage figure:first-child {
+      grid-row: 1 / span 2
+    }
+
+    .cap {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(9, 17, 31, .78);
+      backdrop-filter: blur(10px);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .04em
+    }
+
+    .band {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .025));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow)
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 26px
+    }
+
+    .stat-rail {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px
+    }
+
+    .rail {
+      background: #fff;
+      border-radius: 18px;
+      padding: 16px 12px;
+      text-align: center;
+      color: #071120;
+      box-shadow: var(--shadow)
+    }
+
+    .rail strong {
+      display: block;
+      font: 800 clamp(1.7rem, 3vw, 2.7rem)/.95 Outfit, sans-serif
+    }
+
+    .rail span {
+      display: block;
+      margin-top: 8px;
+      font-size: .8rem;
+      line-height: 1.25;
+      color: #213148
+    }
+
+    .cards-3,
+    .cards-4,
+    .highlight-grid,
+    .media-grid,
+    .cta-grid {
+      display: grid;
+      gap: 18px
+    }
+
+    .cards-3 {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
+    }
+
+    .cards-4 {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))
+    }
+
+    .highlight-grid {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))
+    }
+
+    .media-grid {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))
+    }
+
+    .cta-grid {
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr))
+    }
+
+    .card {
+      background: linear-gradient(180deg, var(--panel2), var(--panel3));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow)
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: .74rem;
+      font-weight: 800;
+      margin-bottom: 10px
+    }
+
+    .card p {
+      color: #d8e0eb;
+      margin: .45rem 0 0
+    }
+
+    .card .mini-stat {
+      display: block;
+      margin-top: 14px;
+      font: 800 2rem/.95 Outfit, sans-serif;
+      color: #fff
+    }
+
+    .card .sub {
+      font-size: .88rem;
+      color: var(--muted)
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 22px;
+      align-items: start
+    }
+
+    .about-visual {
+      display: grid;
+      gap: 14px
+    }
+
+    .mosaic {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px
+    }
+
+    .mosaic figure:nth-child(1) {
+      grid-column: 1 / span 2;
+      min-height: 280px
+    }
+
+    .mosaic figure:nth-child(2),
+    .mosaic figure:nth-child(3) {
+      min-height: 210px
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(79, 209, 222, .12);
+      border: 1px solid rgba(79, 209, 222, .22);
+      font-size: .78rem;
+      font-weight: 700;
+      margin-top: 14px;
+      color: #dffbff
+    }
+
+    .pivot {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .015))
+    }
+
+    .conf-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px
+    }
+
+    .conf-gallery figure {
+      min-height: 200px
+    }
+
+    .conference-stack {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+      margin-top: 22px
+    }
+
+    .conference-stack .card {
+      padding: 16px
+    }
+
+    .conference-stack .photo-card {
+      display: grid;
+      gap: 12px
+    }
+
+    .conference-stack .photo-card figure {
+      min-height: 320px
+    }
+
+    .conference-stack .photo-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px
+    }
+
+    .conference-stack .photo-row figure {
+      min-height: 220px
+    }
+
+    .research-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+      align-items: stretch
+    }
+
+    .research-side {
+      display: grid;
+      gap: 18px
+    }
+
+    .grants {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+      align-items: stretch
+    }
+
+    .grant-hero {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px
+    }
+
+    .grant-box {
+      background: #fff;
+      color: #09111f;
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow)
+    }
+
+    .grant-box strong {
+      display: block;
+      font: 800 clamp(2.3rem, 4vw, 4rem)/.92 Outfit, sans-serif
+    }
+
+    .media-card {
+      padding: 0;
+      overflow: hidden
+    }
+
+    .media-card .inner {
+      padding: 16px 18px 18px
+    }
+
+    .media-card figure {
+      min-height: 210px;
+      border: none;
+      border-bottom: 1px solid var(--line);
+      border-radius: 0
+    }
+
+    .media-card .tag {
+      display: inline-block;
+      margin-top: -2px;
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(79, 209, 222, .11);
+      border: 1px solid rgba(79, 209, 222, .22);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #d9faff
+    }
+
+    .cta-card {
+      background: linear-gradient(180deg, var(--panel2), #0d1728);
+      color: #fff;
+      border-radius: 20px;
+      padding: 18px;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow)
+    }
+
+    .cta-card strong {
+      display: block;
+      font: 700 1rem Outfit, sans-serif;
+      margin-bottom: 6px
+    }
+
+    .footer {
+      padding: 40px 0 60px;
+      color: var(--muted);
+      text-align: center
+    }
+
+    .tight {
+      max-width: 52ch
+    }
+
+    .extra-links {
+      margin-top: 10px
+    }
+
+    .extra-links summary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(79, 209, 222, .35);
+      background: rgba(79, 209, 222, .08);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 1rem;
+      list-style: none
+    }
+
+    .extra-links summary::-webkit-details-marker {
+      display: none
+    }
+
+    .extra-links summary::after {
+      content: " \25BE";
+      margin-left: 6px
+    }
+
+    .extra-links[open] summary::after {
+      content: " \25B4"
+    }
+
+    .extra-links .link-list {
+      margin-top: 12px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(9, 17, 31, .88);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .extra-links .link-list a {
+      font-size: .88rem;
+      color: var(--cyan2);
+      word-break: break-all
+    }
+
+    body.lb-open {
+      overflow: hidden
+    }
+
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(3, 7, 14, .84);
+      backdrop-filter: blur(6px);
+      z-index: 9999
+    }
+
+    .lightbox-overlay.is-open {
+      display: flex
+    }
+
+    .lightbox-frame {
+      position: relative;
+      max-width: min(96vw, 1200px);
+      max-height: 92vh
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 92vh;
+      width: auto;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .55);
+      background: #08101b
+    }
+
+    .lightbox-hint {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(9, 17, 31, .78);
+      backdrop-filter: blur(10px);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: #e7eef9
+    }
+
+    .lightbox-caption {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      top: 16px;
+      max-height: 22vh;
+      overflow: auto;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(9, 17, 31, .78);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, .14);
+      color: #e7eef9;
+      font-size: .92rem;
+      line-height: 1.35;
+      display: none;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .35)
+    }
+
+    .lightbox-caption.is-open {
+      display: block
+    }
+
+    img {
+      cursor: zoom-in
+    }
+
+    .lightbox-overlay.is-open .lightbox-img {
+      cursor: zoom-out
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid {
+        grid-template-columns: 1fr
+      }
+
+      .hero-collage {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 220px
+      }
+
+      .hero-collage figure:first-child {
+        grid-row: auto
+      }
+
+      .stat-rail {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+      }
+
+      .grant-hero {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+    }
+
+    @media (max-width: 820px) {
+      section {
+        padding: 72px 0
+      }
+
+      .hero {
+        padding-top: 36px
+      }
+
+      .kpi-grid,
+      .stat-rail {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .conference-stack .photo-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+    }
+
+    @media (max-width: 560px) {
+      .wrap {
+        padding: 0 16px
+      }
+
+      .hero-collage {
+        grid-template-columns: 1fr;
+        grid-template-rows: none
+      }
+
+      .hero-collage figure,
+      .hero-collage figure:first-child {
+        min-height: 220px;
+        height: auto
+      }
+
+      .kpi-grid,
+      .stat-rail,
+      .grant-hero,
+      .conference-stack .photo-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .rail {
+        padding: 14px 10px
+      }
+
+      .rail strong {
+        font-size: clamp(1.6rem, 9vw, 2.4rem)
+      }
+    }
+
+    @media (max-width: 380px) {
+
+      .kpi-grid,
+      .stat-rail,
+      .grant-hero,
+      .conference-stack .photo-row {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-title">
+        <div class="kicker">2025 Impact Report</div>
+        <h1>Research, Resilience, and Global Convening</h1>
+      </div>
+
+      <div class="hero-grid" style="margin-top:18px;">
+        <div class="hero-copy">
+          <p class="lede">In 2025, the <strong>Blavatnik Interdisciplinary Cyber Research Center</strong> funded new
+            science, advanced visible research, and convened the global cyber and AI community during one of the most
+            turbulent years the region has faced in recent memory.</p>
+          <p class="lede">When the 12-Day War disrupted our June conference calendar, we moved <strong>Cyber Week, AI
+              Week, and DefenseTech Week</strong> to December and delivered all three before the year ended.</p>
+          <div class="btn-row">
+            <a class="btn primary" href="#year">Explore the year</a>
+            <a class="btn secondary" href="https://icrc.tau.ac.il/icrc-publications" target="_blank">Read
+              publications</a>
+          </div>
+        </div>
+
+        <div class="hero-collage" style="grid-template-columns:1fr;grid-template-rows:auto;">
+          <figure style="grid-row:auto;min-height:400px;">
+            <img src="images/Team.jpg" alt="Blavatnik ICRC team">
+            <figcaption class="cap">The Blavatnik ICRC team</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="hero-kpis">
+        <div class="kpi-wrap">
+          <div class="kpi-grid">
+            <div class="kpi-card"><strong>95+</strong><span class="label">Grants awarded by the center</span></div>
+            <div class="kpi-card"><strong>6</strong><span class="label">New funded grants (2025)</span></div>
+            <div class="kpi-card"><strong>330+</strong><span class="label">Affiliated researchers</span></div>
+            <div class="kpi-card"><strong>3</strong><span class="label">Flagship conferences</span></div>
+            <div class="kpi-card"><strong>11,000+</strong><span class="label">Participants across flagship
+                platforms</span></div>
+            <div class="kpi-card"><strong>100+</strong><span class="label">Countries represented</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="year">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Why this year mattered</div>
+            <h2 class="tight">We kept the global conversation moving.</h2>
+          </div>
+          <p class="deck">2025 tested continuity. We kept research moving, kept funding active, and kept the public
+            platforms that connect science, policy, and industry running.</p>
+        </div>
+        <div class="band">
+          <div class="cards-3">
+            <div class="card">
+              <div class="eyebrow">What we faced</div>
+              <h3>Disruption with real constraints</h3>
+              <p>When the 12-Day War disrupted our June calendar, we treated it as an operational problem to solve, not
+                a reason to pause.</p>
+            </div>
+            <div class="card">
+              <div class="eyebrow">What we protected</div>
+              <h3>Continuity of research and funding</h3>
+              <p>We kept grants active and kept research output moving, with results that show up in projects,
+                publications, and collaborations.</p>
+            </div>
+            <div class="card">
+              <div class="eyebrow">What we delivered</div>
+              <h3>Public platforms at full scale</h3>
+              <p>We moved Cyber Week, AI Week, and DefenseTech Week to December and delivered the full sequence,
+                preserving the place where the field meets.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap about-grid">
+        <div>
+          <div class="kicker">About the center</div>
+          <h2>Research, funding, outreach, built to move together.</h2>
+          <p class="deck">We run an interdisciplinary research center focused on cybersecurity, AI, and digital trust.
+            We fund research through a competitive grants program and operate major outreach platforms, including Cyber
+            Week, AI Week, and DefenseTech Week, that bring together researchers, policymakers, industry leaders, and
+            international partners.</p>
+          <div class="cards-3" style="margin-top:18px;">
+            <div class="card">
+              <div class="eyebrow">What we do</div>
+              <h3>Interdisciplinary by design</h3>
+              <p>We work across cybersecurity, AI, digital trust, and critical infrastructure, bringing together
+                expertise from computer science, engineering, law, policy, health, and the social sciences.</p>
+              <span class="mini-stat">196+</span>
+              <div class="sub">researchers highlighted on the official center page</div>
+            </div>
+            <div class="card">
+              <div class="eyebrow">How we support science</div>
+              <h3>Funding research through grants</h3>
+              <p>We operate a competitive research fund that awards fundamental and applied grants across cybersecurity,
+                AI, and digital trust.</p>
+            </div>
+            <div class="card">
+              <div class="eyebrow">Why our model matters</div>
+              <h3>Connecting research, policy, and industry</h3>
+              <p>We translate research into real-world impact. We act as a bridge, connecting top researchers,
+                policymakers, and industry leaders to drive global solutions.</p>
+              <span class="mini-stat">11,000+</span>
+              <div class="sub">participants across our flagship platforms</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-visual">
+          <figure
+            style="margin:0;position:relative;overflow:hidden;border-radius:22px;background:#08101b;border:1px solid var(--line);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;padding:10px;">
+            <img src="images/Daily1.jpg" alt="Team"
+              style="width:100%;height:100%;object-fit:contain;transition:transform .35s ease;">
+            <figcaption class="cap">Team</figcaption>
+          </figure>
+          <div class="mosaic">
+            <figure>
+              <img src="images/Daily3.jpg" alt="Researchers in discussion">
+              <figcaption class="cap">Researchers in discussion</figcaption>
+            </figure>
+            <figure>
+              <img src="images/Daily4.jpg" alt="Daily life of the center">
+              <figcaption class="cap">Daily life of the center</figcaption>
+            </figure>
+            <figure>
+              <img src="images/Daily2.jpg" alt="Daily life of the center">
+              <figcaption class="cap">Daily life of the center</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Research highlights</div>
+            <h2>Visible research outcomes</h2>
+          </div>
+          <p class="deck">Three projects capture how the Blavatnik Interdisciplinary Cyber Research Center turned
+            academic work into visible external impact in 2025.</p>
+        </div>
+        <div class="research-row">
+          <div class="card">
+            <div class="eyebrow">Global security discovery</div>
+            <h3>MadeYouReset</h3>
+            <p>Working with Imperva, researchers from the center uncovered a protocol-level flaw in HTTP/2 affecting
+              more than 100 vendors and potentially billions of users.</p>
+            <p><strong>Why it matters:</strong> we coordinated responsible disclosure through US CERT before the issue
+              could be widely exploited, turning academic discovery into direct public protection.</p>
+            <a class="img-safe" href="https://www.youtube.com/watch?v=VHL8SellyAE" target="_blank"
+              rel="noreferrer noopener"
+              style="margin-top:14px;border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);">
+              <img src="images/madeyoureset_youtube.jpg" alt="MadeYouReset video (YouTube)" data-no-lightbox>
+            </a>
+            <div class="btn-row" style="margin-top:14px;">
+              <a class="btn secondary"
+                href="https://www.securityweek.com/madeyoureset-http2-vulnerability-enables-massive-ddos-attacks/"
+                target="_blank">SecurityWeek</a>
+              <a class="btn secondary"
+                href="https://www.theregister.com/2025/08/14/madeyoureset_http2_flaw_lets_attackers/"
+                target="_blank">The Register</a>
+            </div>
+            <details class="extra-links">
+              <summary>Extra links</summary>
+              <div class="link-list">
+                <a href="https://israeldefense.co.il/node/66021" target="_blank">Israel Defense</a>
+                <a href="https://www.gov.il/BlobFolder/reports/alert_1912/he/ALERT-CERT-IL-W-1912.pdf"
+                  target="_blank">CERT-IL Advisory (PDF)</a>
+                <a href="https://thehackernews.com/2025/08/new-http2-madeyoureset-vulnerability.html"
+                  target="_blank">The Hacker News</a>
+                <a href="https://medium.com/@paritoshblogs/madeyoureset-when-http-2-turns-on-itself-18d7da401137"
+                  target="_blank">Medium</a>
+                <a href="https://cyberinsider.com/new-madeyoureset-method-exploits-http-2-for-stealthy-dos-attacks/"
+                  target="_blank">Cyber Insider</a>
+                <a href="https://nationalcioreview.com/articles-insights/extra-bytes/http-2-under-siege-researchers-reveal-protocol-compliant-ddos-exploit/"
+                  target="_blank">National CIO Review</a>
+                <a href="https://www.imperva.com/blog/madeyoureset-turning-http-2-server-against-itself/"
+                  target="_blank">Imperva Blog</a>
+                <a href="https://cyberpress.org/http-2-madeyoureset-flaw/" target="_blank">CyberPress</a>
+                <a href="https://gbhackers.com/http-2-madeyoureset-vulnerability/" target="_blank">GBHackers</a>
+                <a href="https://hackmag.com/news/madeyoureset" target="_blank">HackMag</a>
+                <a href="https://socradar.io/madeyoureset-new-http-2-dos-vulnerability-explained/"
+                  target="_blank">SOCRadar</a>
+                <a href="https://risky.biz/risky-bulletin-madeyoureset-vulnerability-enables-unlimited-http-2-ddos-attacks/"
+                  target="_blank">Risky Biz</a>
+              </div>
+            </details>
+          </div>
+          <div class="research-side">
+            <div class="card">
+              <div class="eyebrow">Research recognition</div>
+              <h3>USENIX Security 2025</h3>
+              <p>A phishing-detection project developed with the National University of Singapore was accepted to USENIX
+                Security 2025.</p>
+              <div class="badge"><a href="https://www.usenix.org/conference/usenixsecurity25/presentation/teoh"
+                  target="_blank" style="color:inherit;text-decoration:underline;">USENIX</a></div>
+            </div>
+            <div class="card">
+              <div class="eyebrow">AI and privacy</div>
+              <h3>Health data in the AI era</h3>
+              <p>A collaboration with Case Western Reserve University examined privacy risks in AI systems that process
+                sensitive medical data.</p>
+              <div class="badge"><a href="https://sis.pitt.edu/lersais/conference/workshops/SPiRiT/" target="_blank"
+                  style="color:inherit;text-decoration:underline;">IEEE</a></div>
+              <div class="badge"><a
+                  href="https://www.researchgate.net/publication/396747630_Exploring_Membership_Inference_Vulnerabilities_in_Clinical_Large_Language_Models"
+                  target="_blank" style="color:inherit;text-decoration:underline;">Research</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pivot">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">The December pivot</div>
+            <h2>We kept three flagship platforms in motion.</h2>
+          </div>
+          <p class="deck">Blavatnik ICRC kept its global convening role under pressure and delivered the full sequence
+            at scale before year-end.</p>
+        </div>
+        <div class="conference-stack">
+          <article class="card photo-card">
+            <figure><img src="images/IMG-583-scaled.jpg" alt="Cyber Week audience">
+              <figcaption class="cap">Cyber Week</figcaption>
+            </figure>
+            <div>
+              <div class="eyebrow">Cyber Week</div>
+              <h3>A major international convening point</h3>
+              <p>We brought together senior policymakers, researchers, industry leaders, and internationally recognized
+                speakers including Naftali Bennett and Shira Rubinoff to examine cybersecurity strategy, infrastructure
+                resilience, and emerging threats.</p>
+              <p><a href="https://cyberweektau.com/" target="_blank">Visit Cyber Week</a></p>
+            </div>
+            <div class="photo-row">
+              <figure><img src="images/IMG-771-1-scaled.jpg" alt="Naftali Bennett">
+                <figcaption class="cap">Naftali Bennett</figcaption>
+              </figure>
+              <figure><img src="images/IMG-2171-scaled.jpg" alt="Ronen Bar">
+                <figcaption class="cap">Ronen Bar</figcaption>
+              </figure>
+              <figure><img src="images/Germany-Israel_energy.jpg" alt="Germany-Israel energy collaboration"
+                  data-lightbox-caption="A joint event around Photovoltaic Energy Cyber Challenges. This event was a joint collaboration with the German and Israeli Ministries of Energy. The participation of Government, industry, and academy brought a unique level of professional discussion as well as the working groups that were during the event.">
+                <figcaption class="cap">Germany-Israel energy collaboration</figcaption>
+              </figure>
+              <figure style="min-height:220px;height:220px;"><img src="images/photo-chen galili 9.12.25-168.JPG"
+                  alt="CyberWeek backstage" data-lightbox-caption="CyberWeek backstage">
+                <figcaption class="cap">CyberWeek backstage</figcaption>
+              </figure>
+            </div>
+          </article>
+          <article class="card photo-card">
+            <figure style="min-height:320px;height:320px;"><img src="images/3F9A2981.JPG" alt="AI Week session"
+                data-lightbox-caption="AI Week session">
+              <figcaption class="cap">AI Week</figcaption>
+            </figure>
+            <div>
+              <div class="eyebrow">AI Week</div>
+              <h3>Research, policy, and public consequence</h3>
+              <p>We connected AI governance, health applications, digital identity, and the institutional consequences
+                of increasingly capable systems in a forum built for researchers, policymakers, and industry
+                decision-makers.</p>
+              <p><a href="https://ai-week.com/" target="_blank">Visit AI Week</a></p>
+            </div>
+            <div class="photo-row">
+              <figure style="min-height:220px;height:220px;"><img src="images/3F9A3775.JPG" alt="AI Week session"
+                  data-lightbox-caption="AI Week session"></figure>
+              <figure style="min-height:220px;height:220px;"><img src="images/3F9A2755.JPG" alt="AI Week session"
+                  data-lightbox-caption="AI Week session"></figure>
+              <figure style="min-height:220px;height:220px;"><img src="images/3F9A1611.JPG" alt="AI Week session"
+                  data-lightbox-caption="AI Week session"></figure>
+              <figure style="min-height:220px;height:220px;"><img src="images/3F9A1259.JPG" alt="AI Week session"
+                  data-lightbox-caption="AI Week session"></figure>
+            </div>
+          </article>
+          <article class="card photo-card">
+            <figure style="min-height:320px;height:320px;"><img
+                src="images/דיפנס-טק 2025 יום 2 - צילום לנס הפקות 208.jpg" alt="DefenseTech Week session"
+                data-lightbox-caption="DefenseTech Week session">
+              <figcaption class="cap">DefenseTech Week</figcaption>
+            </figure>
+            <div>
+              <div class="eyebrow">DefenseTech Week</div>
+              <h3>Innovation at the intersection of security and technology</h3>
+              <p>We convened a specialized outward-facing forum on defense innovation, cybersecurity, and infrastructure
+                resilience in collaboration with partners from national security, academia, and industry.</p>
+              <p><a href="https://defensetech-week.com/" target="_blank">Visit DefenseTech Week</a></p>
+            </div>
+            <div class="photo-row">
+              <figure style="min-height:220px;height:220px;"><img src="images/photo-chen galili 1.12.25-1362.JPG"
+                  alt="DefenseTech Week backstage" data-lightbox-caption="DefenseTech Week backstage"></figure>
+              <figure style="min-height:220px;height:220px;"><img src="images/photo-chen galili 1.12.25-1272.JPG"
+                  alt="DefenseTech Week backstage" data-lightbox-caption="DefenseTech Week backstage"></figure>
+              <figure style="min-height:220px;height:220px;"><img src="images/photo-chen galili 1.12.25-1379.JPG"
+                  alt="DefenseTech Week backstage" data-lightbox-caption="DefenseTech Week backstage"></figure>
+              <figure style="min-height:220px;height:220px;"><img src="images/2025 - 218.jpg"
+                  alt="DefenseTech Week session" data-lightbox-caption="DefenseTech Week session"></figure>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap grants">
+        <div>
+          <div class="kicker">Funding new science</div>
+          <h2>We shape the research frontier through grants.</h2>
+          <p class="deck">The Blavatnik Interdisciplinary Cyber Research Center operates a competitive research fund and
+            awards fundamental and applied grants that prioritize what gets built next.</p>
+          <div class="kpi-grid" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px;">
+            <div class="kpi-card"><strong>95+</strong><span class="label"><a
+                  href="https://icrc.tau.ac.il/researchdatabase" target="_blank"
+                  style="color:inherit;text-decoration:underline;">Total research grants awarded by the
+                  center</a></span></div>
+            <div class="kpi-card"><strong>6</strong><span class="label"><a href="https://icrc.tau.ac.il/cfp2025-results"
+                  target="_blank" style="color:inherit;text-decoration:underline;">New research grants</a> awarded in
+                2025</span></div>
+          </div>
+          <div class="band" style="margin-top:18px;">
+            <p>These awards support projects in critical infrastructure protection, AI privacy and trust, digital
+              identity, industrial cyber defense, and related cyber and AI fields. Over 220 graduate students have
+              trained through center-funded research.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Media and interviews</div>
+            <h2>Coverage that extends the conversation</h2>
+          </div>
+          <p class="deck">Media belongs on the page as its own prestige layer. These pieces show how the center’s work
+            enters public debate beyond academic publication.</p>
+        </div>
+        <div class="media-grid">
+          <a class="card media-card"
+            href="https://www.haaretz.co.il/st/inter/Global/magazine/Haaretz/2025/05/Defense_industries/FlipBook.html#p=1"
+            target="_blank" rel="noreferrer noopener">
+            <figure><img src="images/impact2025_e37_dual-use_haaretz.png" alt="Dual Use Technologies in Haaretz">
+            </figure>
+            <div class="inner">
+              <span class="tag">Print media</span>
+              <h3>Dual Use Technologies</h3>
+              <p>Feature placement in Haaretz’s global magazine edition.</p>
+            </div>
+          </a>
+          <a class="card media-card" href="https://www.israelhayom.co.il/news/defense/article/18770928" target="_blank"
+            rel="noreferrer noopener">
+            <figure><img src="images/impact2025_e4_ofek19_israelhayom.png" alt="Ofek 19 in Israel Hayom"></figure>
+            <div class="inner">
+              <span class="tag">Print media</span>
+              <h3>Ofek 19</h3>
+              <p>National defense coverage that extends technical work into public-facing relevance.</p>
+            </div>
+          </a>
+          <a class="card media-card" href="https://youtu.be/L5vU9rdhOv0" target="_blank" rel="noreferrer noopener">
+            <figure><img src="images/impact2025_e27_iran-war_youtube.png" alt="The War with Iran and Technology video">
+            </figure>
+            <div class="inner">
+              <span class="tag">Video interview</span>
+              <h3>The War with Iran &amp; Technology</h3>
+              <p>Video commentary that broadens reach beyond the conference hall and research paper.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Stay connected</div>
+            <h2>Follow the work from the place where it happens.</h2>
+          </div>
+          <p class="deck">Explore publications, track the conference platforms, and stay close to the Blavatnik
+            Interdisciplinary Cyber Research Center as we fund new research and keep connecting science to public
+            consequence.</p>
+        </div>
+        <div class="cta-grid">
+          <a class="cta-card" href="https://icrc.tau.ac.il/icrc-publications" target="_blank"><strong>Read our
+              publications</strong><span>Explore recent research output.</span></a>
+          <a class="cta-card" href="https://cyberweektau.com/" target="_blank"><strong>Follow Cyber
+              Week</strong><span>See the flagship cyber platform.</span></a>
+          <a class="cta-card" href="https://ai-week.com/" target="_blank"><strong>Follow AI Week</strong><span>Track
+              upcoming AI programming.</span></a>
+          <a class="cta-card" href="https://defensetech-week.com/" target="_blank"><strong>Follow DefenseTech
+              Week</strong><span>Explore the defense-tech forum.</span></a>
+          <a class="cta-card" href="https://icrc.tau.ac.il/" target="_blank"><strong>Visit the center</strong><span>See
+              the wider research ecosystem.</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">Blavatnik Interdisciplinary Cyber Research Center at Tel Aviv University — 2025 impact page</div>
+  </footer>
+
+  <div class="lightbox-overlay" id="lightbox" aria-hidden="true">
+    <div class="lightbox-frame" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <img class="lightbox-img" id="lightboxImg" alt="">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+      <div class="lightbox-hint">Tap/click to close</div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const overlay = document.getElementById('lightbox');
+      const modalImg = document.getElementById('lightboxImg');
+      const captionEl = document.getElementById('lightboxCaption');
+
+      if (!overlay || !modalImg) return;
+
+      let openSrc = null;
+
+      function openLightbox(imgEl) {
+        const src = imgEl.getAttribute('src');
+        if (!src) return;
+
+        if (overlay.classList.contains('is-open') && openSrc === src) {
+          closeLightbox();
+          return;
+        }
+
+        openSrc = src;
+        modalImg.src = src;
+        modalImg.alt = imgEl.getAttribute('alt') || 'Image';
+
+        const caption = (imgEl.getAttribute('data-lightbox-caption') || imgEl.getAttribute('alt') || '').trim();
+        if (captionEl) {
+          if (caption) {
+            captionEl.textContent = caption;
+            captionEl.classList.add('is-open');
+          } else {
+            captionEl.textContent = '';
+            captionEl.classList.remove('is-open');
+          }
+        }
+
+        overlay.classList.add('is-open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('lb-open');
+      }
+
+      function closeLightbox() {
+        overlay.classList.remove('is-open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('lb-open');
+        modalImg.removeAttribute('src');
+        openSrc = null;
+
+        if (captionEl) {
+          captionEl.textContent = '';
+          captionEl.classList.remove('is-open');
+        }
+      }
+
+      document.addEventListener('click', (e) => {
+        const img = e.target && e.target.closest ? e.target.closest('img') : null;
+        if (!img) return;
+
+        if (img === modalImg) {
+          closeLightbox();
+          return;
+        }
+
+        // Avoid hijacking icons or decorative images if you later mark them.
+        if (img.hasAttribute('data-no-lightbox')) return;
+
+        // If image is inside a link, prevent navigation on image click.
+        if (img.closest('a')) e.preventDefault();
+
+        openLightbox(img);
+      }, true);
+
+      overlay.addEventListener('click', () => closeLightbox());
+      overlay.querySelector('.lightbox-frame')?.addEventListener('click', (e) => e.stopPropagation());
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeLightbox();
+      });
+    })();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Blavatnik ICRC | Leading the Charge in 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            900: '#0a0f1c',
+                            800: '#111827',
+                            700: '#1f2937',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        },
+                        cyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'hero-pattern': 'linear-gradient(to right bottom, rgba(10, 15, 28, 0.9), rgba(17, 24, 39, 0.95)), url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%231f2937\' fill-opacity=\'0.2\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0f1c;
+            color: #f3f4f6;
+        }
+
+        .glass-card {
+            background: rgba(31, 41, 55, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(34, 211, 238, 0.15), 0 4px 6px -2px rgba(34, 211, 238, 0.05);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-cyan {
+            background: linear-gradient(135deg, #22d3ee, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        hr.gold-line {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(251, 191, 36, 0), rgba(251, 191, 36, 0.75), rgba(251, 191, 36, 0));
+        }
+
+        .media-placeholder {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .media-placeholder img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .gallery-photo {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-container {
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .gallery-container:hover .gallery-photo {
+            transform: scale(1.05);
+        }
+
+        .link-interactive {
+            color: #22d3ee;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            text-decoration: underline;
+            text-decoration-color: rgba(34, 211, 238, 0.3);
+        }
+
+        .link-interactive:hover {
+            color: #fbbf24;
+            text-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+            text-decoration-color: #fbbf24;
+        }
+
+        .feature-border {
+            border: 2px solid rgba(34, 211, 238, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #22d3ee, #3b82f6, #22d3ee);
+        }
+
+        .pillar-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- ============================================================
+         HERO — Assertive leadership tone
+         ============================================================ -->
+    <header class="relative min-h-screen flex items-center justify-center bg-hero-pattern overflow-hidden pt-20 pb-16">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in-section is-visible">
+            <p class="text-gold-400 font-semibold tracking-widest uppercase mb-4 text-sm md:text-base">Tel Aviv
+                University &bull; Blavatnik ICRC</p>
+            <h1 class="text-5xl md:text-7xl font-display font-extrabold text-white tracking-tight mb-6 text-glow leading-tight">
+                Leading the Charge <br class="hidden md:block">in <span class="gradient-text-cyan">2025</span>
+            </h1>
+            <p class="mt-6 max-w-3xl mx-auto text-xl md:text-2xl text-gray-400 font-light leading-relaxed">
+                In a year defined by conflict, the <a href="https://icrc.tau.ac.il" target="_blank"
+                    class="link-interactive">Blavatnik ICRC</a> produced world-class
+                breakthroughs, protected global infrastructure, and cemented its position at the forefront
+                of cybersecurity and AI.
+            </p>
+            <div class="mt-12">
+                <a href="#summary"
+                    class="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/30 text-base font-medium rounded-full text-cyan-400 bg-cyan-900/20 hover:bg-cyan-900/40 hover:border-cyan-400/50 transition-all duration-300">
+                    Explore Our Impact
+                    <svg class="ml-2 w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         EXECUTIVE SUMMARY — "Led the charge" narrative
+         ============================================================ -->
+    <section id="summary" class="py-24 bg-navy-900 relative border-t border-gray-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in-section">
+            <h2 class="text-sm font-bold tracking-widest text-gold-500 uppercase mb-3">Year in Review</h2>
+            <h3 class="text-3xl md:text-5xl font-display font-bold text-white mb-8">A Year of Global Leadership</h3>
+            <p class="text-lg md:text-xl text-gray-300 leading-relaxed font-light mb-6">
+                During the 12-Day War and its aftermath, the Blavatnik ICRC drove global cyber defense and thought leadership forward. We discovered critical vulnerabilities protecting billions of users, <a href="https://icrc.tau.ac.il/icrc-publications" target="_blank" class="link-interactive">published</a> at the world's most prestigious academic venues, and educated the next generation of cyber defenders.
+            </p>
+            <p class="text-lg md:text-xl text-gray-300 leading-relaxed font-light mb-16">
+                The ICRC <strong class="text-white">produces</strong> leading-edge, globally impactful work that shapes the future of AI, digital trust, and cybersecurity.
+            </p>
+        </div>
+
+        <!-- 2025 in a Glance — Metrics -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+            <div class="text-center mb-12 fade-in-section">
+                <h3 class="text-2xl md:text-3xl font-display font-bold text-white">2025 in a Glance</h3>
+            </div>
+
+            <div class="space-y-12">
+                <div class="fade-in-section">
+                    <div class="glass-card rounded-[2rem] p-6 sm:p-10 border border-white/5 bg-navy-900/40 shadow-2xl">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="glass-card rounded-2xl p-6 text-center transform transition duration-500 hover:scale-105 overflow-hidden relative">
+                                <div class="absolute top-0 left-0 w-full h-1 bg-gold-500/50"></div>
+                                <p class="text-4xl font-display font-bold text-gold-400 mb-2 mt-2">95+</p>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest">Total Funded Grants</p>
+                            </div>
+                            <div class="glass-card rounded-2xl p-6 text-center transform transition duration-500 hover:scale-105 overflow-hidden relative"
+                                style="transition-delay: 100ms;">
+                                <div class="absolute top-0 left-0 w-full h-1 bg-gold-500/50"></div>
+                                <p class="text-4xl font-display font-bold text-gold-400 mb-2 mt-2">6</p>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest">New Funded Grants</p>
+                            </div>
+                            <div class="glass-card rounded-2xl p-6 text-center transform transition duration-500 hover:scale-105 overflow-hidden relative"
+                                style="transition-delay: 200ms;">
+                                <div class="absolute top-0 left-0 w-full h-1 bg-cyan-400/50"></div>
+                                <p class="text-4xl font-display font-bold text-cyan-400 mb-2 mt-2">330+</p>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest">Affiliated Researchers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in-section">
+                    <div class="glass-card rounded-[2rem] p-6 sm:p-10 border border-white/5 bg-navy-900/40 shadow-2xl mt-8">
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                            <div class="glass-card rounded-2xl p-6 text-center transform transition duration-500 hover:scale-105 overflow-hidden relative">
+                                <div class="absolute top-0 left-0 w-full h-1 bg-purple-400/50"></div>
+                                <p class="text-4xl font-display font-bold text-purple-400 mb-2 mt-2">3</p>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest">Flagship Events</p>
+                            </div>
+                            <div class="glass-card rounded-2xl p-6 text-center transform transition duration-500 hover:scale-105 overflow-hidden relative"
+                                style="transition-delay: 100ms;">
+                                <div class="absolute top-0 left-0 w-full h-1 bg-purple-400/50"></div>
+                                <p class="text-4xl font-display font-bold text-purple-400 mb-2 mt-2">11K+</p>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest">Participants</p>
+                            </div>
+                            <div class="glass-card rounded-2xl p-6 text-center transform transition duration-500 hover:scale-105 overflow-hidden relative"
+                                style="transition-delay: 200ms;">
+                                <div class="absolute top-0 left-0 w-full h-1 bg-purple-400/50"></div>
+                                <p class="text-4xl font-display font-bold text-purple-400 mb-2 mt-2">100+</p>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest">Countries Represented</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         THE ICRC RESEARCH ECOSYSTEM (NEW)
+         prompt_combined instructions #2, #3, #4
+         ============================================================ -->
+    <section class="py-24 bg-navy-900 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <hr class="gold-line mb-12">
+                <h2 class="text-sm font-bold tracking-widest text-gold-500 uppercase mb-3">Our Foundation</h2>
+                <h3 class="text-3xl md:text-5xl font-display font-bold text-white mb-8">A World-Class Research Ecosystem</h3>
+                <p class="max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed font-light">
+                    The Blavatnik ICRC is a living intellectual hub, a year-round nexus where the world's leading minds converge to tackle the most urgent challenges in cybersecurity and AI.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-in-section">
+                <!-- Vibrant Research Community -->
+                <div class="glass-card rounded-2xl p-8 text-center">
+                    <div class="pillar-icon mx-auto bg-cyan-500/10 border border-cyan-500/20">
+                        <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-display font-bold text-white mb-3">Vibrant Research Community</h4>
+                    <p class="text-sm text-gray-300 font-light leading-relaxed">
+                        With over <strong class="text-cyan-400">330 affiliated researchers</strong>, the ICRC sustains a continuous cycle of academic exchange: seminars, working groups, and cross-disciplinary collaborations that run year-round. Ideas flow between computer science, engineering, law, policy, and the social sciences, creating the fertile ground where breakthroughs emerge.
+                    </p>
+                </div>
+                <!-- Core Research Corpus -->
+                <div class="glass-card rounded-2xl p-8 text-center">
+                    <div class="pillar-icon mx-auto bg-gold-500/10 border border-gold-500/20">
+                        <svg class="w-7 h-7 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-display font-bold text-white mb-3">Premier Research Corpus</h4>
+                    <p class="text-sm text-gray-300 font-light leading-relaxed">
+                        At the center's core is a <a href="https://icrc.tau.ac.il/ICRC-Management" target="_blank" class="link-interactive">distinguished cohort of globally recognized researchers</a>, experts in network security, AI safety, cryptography, privacy, and critical infrastructure protection. These leading scholars are the driving force behind the ICRC's prestige, attracting top international collaborators and shaping the field's most pressing frontiers.
+                    </p>
+                </div>
+                <!-- Global Strategic Authority -->
+                <div class="glass-card rounded-2xl p-8 text-center">
+                    <div class="pillar-icon mx-auto bg-purple-500/10 border border-purple-500/20">
+                        <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-display font-bold text-white mb-3">The First Call for Cyber Strategy</h4>
+                    <p class="text-sm text-gray-300 font-light leading-relaxed">
+                        The Blavatnik ICRC is the <strong class="text-purple-400">first name that comes to mind</strong> when governments, international organizations, and industry leaders need authoritative guidance on cybersecurity strategy. Through our <a href="https://en-sectech.tau.ac.il/past_conferences" target="_blank" class="link-interactive">regular conferences</a>, we bring together top policymakers, provoke thought, shape strategies, and influence policies worldwide.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Research transparency -->
+            <div class="mt-16 text-center fade-in-section">
+                <p class="text-lg text-gray-300 font-light leading-relaxed max-w-4xl mx-auto">
+                    We are transparent about our work. All research results and outputs are <a href="https://icrc.tau.ac.il/icrc-publications" target="_blank" class="link-interactive">published</a>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         STRATEGIC DEFENSE & NATIONAL INFRASTRUCTURE (NEW)
+         prompt_combined instruction #6
+         ============================================================ -->
+    <section class="py-24 bg-navy-800 relative z-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <h2 class="text-sm font-bold tracking-widest text-gold-500 uppercase mb-3">National Trust</h2>
+                <h3 class="text-3xl md:text-5xl font-display font-bold text-white mb-8">Trusted with the Nation's Most Critical Assets</h3>
+                <p class="max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed font-light">
+                    When it comes to defending critical national infrastructure and educating the next generation of cyber warriors, the ICRC stands at the center.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-in-section">
+                <!-- Atlas Academy -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">Atlas Academy: Forging Cyber Defenders</h4>
+                    </div>
+                    <p class="text-gray-300 font-light leading-relaxed">
+                        The Israel Ministry of Defense (IMOD) and the IDF built the <strong class="text-cyan-400">Atlas Academy</strong> to educate the nation's top military technology staff. The ICRC provides the academic backbone for this program, directly connecting frontline defense education with cutting-edge university research. In 2025 alone, over <strong class="text-cyan-400">5 Cyber Atlas cohorts</strong> were delivered, deepening the bond between national defense and academic excellence.
+                    </p>
+                </div>
+                <!-- National Electricity Grid -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-gold-500/10 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-gold-400 transition-colors">National Electricity Grid Protection</h4>
+                    </div>
+                    <p class="text-gray-300 font-light leading-relaxed">
+                        Having won a national competition led by the <strong class="text-gold-400">Ministry of Energy</strong> and the <strong class="text-gold-400">Israel National Cyber Directorate (INCD)</strong>, our researchers are now developing advanced anomaly detection systems for the National Electricity Production System, in partnership with the National Energy Lab and Ben-Gurion University. This is cyber defense at the infrastructure level.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         2025 BREAKTHROUGHS & GLOBAL IMPACT (NEW)
+         prompt_combined instruction #5 + Yaniv insights
+         ============================================================ -->
+    <section class="py-24 bg-navy-800 relative z-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <h2 class="text-sm font-bold tracking-widest text-gold-500 uppercase mb-3">Real-World Results</h2>
+                <h3 class="text-3xl md:text-5xl font-display font-bold text-white mb-8">2025 Breakthroughs &amp; Global Impact</h3>
+                <p class="max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed font-light">
+                    This year, ICRC researchers discovered vulnerabilities protecting billions of users, won national security competitions, and placed research at the world's most elite academic venues.
+                </p>
+            </div>
+
+            <!-- MadeYouReset — Flagship Discovery -->
+            <div class="fade-in-section mb-12">
+                <div class="glass-card feature-border rounded-[2rem] p-8 sm:p-12">
+                    <div class="flex flex-col lg:flex-row gap-10 items-center">
+                        <div class="lg:w-2/3">
+                            <span class="inline-block px-3 py-1 bg-red-900/40 text-red-400 text-xs rounded-full font-semibold tracking-wider mb-4">CRITICAL GLOBAL DISCOVERY</span>
+                            <h4 class="text-2xl md:text-3xl font-display font-bold text-white mb-4">
+                                The &ldquo;MadeYouReset&rdquo; HTTP/2 Vulnerability
+                            </h4>
+                            <p class="text-lg text-gray-300 font-light leading-relaxed mb-4">
+                                In collaboration with Imperva, ICRC researchers uncovered a major protocol-level flaw in HTTP/2, affecting over <strong class="text-cyan-400">100 global vendors</strong> and potentially billions of internet users. The team led a coordinated responsible disclosure process with the <strong class="text-cyan-400">US CERT</strong>, ensuring patches reached critical infrastructure before the vulnerability could be exploited.
+                            </p>
+                            <p class="text-sm text-gray-400 leading-relaxed">
+                                The discovery drew massive global media coverage from SecurityWeek, HackerNews, and leading cybersecurity outlets, proving the ICRC neutralizes threats at the protocol level.
+                            </p>
+                        </div>
+                        <div class="lg:w-1/3 text-center flex flex-col items-center">
+                            <div class="inline-flex items-center justify-center w-36 h-36 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 mb-4">
+                                <span class="text-5xl font-display font-bold gradient-text-cyan">100+</span>
+                            </div>
+                            <p class="text-sm text-gray-400 font-semibold uppercase tracking-wider">Global Vendors Affected</p>
+                            <p class="text-xs text-gray-500 mt-1">Responsible disclosure via US CERT</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Breakthroughs -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 fade-in-section">
+                <!-- USENIX Security 2025 -->
+                <div class="glass-card rounded-2xl p-6 group">
+                    <div class="h-1 w-16 bg-gradient-to-r from-gold-400 to-gold-600 rounded mb-5"></div>
+                    <span class="inline-block px-2 py-0.5 bg-gold-500/10 text-gold-400 text-xs rounded-full font-semibold tracking-wider mb-3">TOP-4 VENUE</span>
+                    <h4 class="text-lg font-bold text-white mb-3 group-hover:text-gold-400 transition-colors">USENIX Security 2025</h4>
+                    <p class="text-sm text-gray-300 font-light leading-relaxed">
+                        A three-year research project on phishing website detection, conducted in collaboration with <strong class="text-gray-200">NUS University (Singapore)</strong>, was accepted to <strong class="text-gold-400">USENIX Security 2025</strong>, one of the top four cybersecurity conferences in the world.
+                    </p>
+                </div>
+                <!-- IEEE Workshop -->
+                <div class="glass-card rounded-2xl p-6 group">
+                    <div class="h-1 w-16 bg-gradient-to-r from-gold-400 to-gold-600 rounded mb-5"></div>
+                    <span class="inline-block px-2 py-0.5 bg-gold-500/10 text-gold-400 text-xs rounded-full font-semibold tracking-wider mb-3">PREMIER VENUE</span>
+                    <h4 class="text-lg font-bold text-white mb-3 group-hover:text-gold-400 transition-colors">IEEE: Health Data Privacy in AI</h4>
+                    <p class="text-sm text-gray-300 font-light leading-relaxed">
+                        Pioneering research on health data privacy in the AI era, a collaboration with <strong class="text-gray-200">Case Western Reserve University</strong>, was accepted to a premier <strong class="text-gold-400">IEEE workshop</strong>, tackling one of the most urgent challenges of our time.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         THE DECEMBER PIVOT — Enhanced tone
+         ============================================================ -->
+    <section class="py-24 bg-navy-900 relative z-10 border-t border-gray-800 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12 fade-in-section">
+                <div class="md:w-1/2">
+                    <h3 class="text-3xl md:text-4xl font-display font-bold text-white mb-6 mt-4">The December Pivot</h3>
+                    <p class="text-lg text-gray-300 leading-relaxed font-light mb-6">
+                        <a href="https://cyberweektau.com" target="_blank" class="link-interactive">Cyber Week</a>,
+                        <a href="https://ai-week.com" target="_blank" class="link-interactive">AI Week</a>, and
+                        <a href="https://defensetech-week.com" target="_blank" class="link-interactive">DefenseTech
+                            Week</a>
+                        were scheduled for June 2025. Then the 12-Day War (Operation Rising Lion) came. We decided not
+                        to cancel; instead, we moved them to December.
+                    </p>
+                    <p class="text-lg text-gray-300 leading-relaxed font-light mb-6">
+                        We chose to keep going. Hosting these global events sent a clear message: the Israeli cyber and
+                        AI ecosystem remains open for science, innovation, and international dialogue.
+                    </p>
+                    <p class="text-lg text-gray-300 leading-relaxed font-light">
+                        We hosted high-level policy sessions on cutting-edge frontiers, from critical infrastructure and AI in health to cybersecurity in the quantum era, digital identity, and cybersecurity in photovoltaic systems.
+                    </p>
+                </div>
+                <div class="md:w-1/2 grid grid-cols-2 gap-4">
+                    <div class="gallery-container">
+                        <img src="images/IMG-1183.JPG" alt="Cyber Week 2025" class="gallery-photo">
+                    </div>
+                    <div class="gallery-container mt-8">
+                        <img src="images/3F9A2981.JPG" alt="AI Week 2025" class="gallery-photo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CONFERENCES IN FOCUS — Photo Gallery (preserved)
+         ============================================================ -->
+    <section class="py-24 bg-navy-800 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in-section">
+            <h2 class="text-3xl md:text-5xl font-display font-bold text-white text-center mb-16">Conferences in Focus</h2>
+
+            <!-- Cyber Week -->
+            <h3 class="text-xl font-bold text-cyan-400 mb-6 border-b border-gray-800 pb-2">Cyber Week</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="gallery-container relative group">
+                    <img src="images/IMG-583-scaled.jpg" class="gallery-photo"
+                        alt="Packed Audience at Smolarz Hall, Cyber Week">
+                </div>
+                <div class="gallery-container relative group">
+                    <img src="images/IMG-771-1-scaled.jpg" class="gallery-photo"
+                        alt="Former Prime Minister Naftali Bennett">
+                    <div class="absolute bottom-4 left-4 bg-navy-900/80 px-2 py-1 text-xs text-white rounded">Naftali
+                        Bennett</div>
+                </div>
+                <div class="gallery-container relative group">
+                    <img src="images/IMG-2131-scaled.jpg" class="gallery-photo" alt="Shira Rubinoff">
+                    <div class="absolute bottom-4 left-4 bg-navy-900/80 px-2 py-1 text-xs text-white rounded">Shira
+                        Rubinoff</div>
+                </div>
+                <div class="gallery-container relative group">
+                    <img src="images/IMG-2171-scaled.jpg" class="gallery-photo" alt="ISA Director Ronen Bar">
+                    <div class="absolute bottom-4 left-4 bg-navy-900/80 px-2 py-1 text-xs text-white rounded">Ronen Bar
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Week -->
+            <h3 class="text-xl font-bold text-gold-500 mb-6 border-b border-gray-800 pb-2 mt-12">AI Week</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="gallery-container relative group">
+                    <img src="images/3F9A2981.JPG" class="gallery-photo" alt="Neta Maimon, AI Week">
+                    <div class="absolute bottom-4 left-4 bg-navy-900/80 px-2 py-1 text-xs text-white rounded">Neta
+                        Maimon</div>
+                </div>
+                <div class="gallery-container relative group">
+                    <img src="images/3F9A2755.JPG" class="gallery-photo" alt="Yaki Gani, AI Week">
+                    <div class="absolute bottom-4 left-4 bg-navy-900/80 px-2 py-1 text-xs text-white rounded">Yaki Gani
+                    </div>
+                </div>
+                <div class="gallery-container relative group">
+                    <img src="images/3F9A1611.JPG" class="gallery-photo" alt="AI Week Speaker">
+                </div>
+                <div class="gallery-container relative group">
+                    <img src="images/3F9A0380.JPG" class="gallery-photo" alt="AI Week Audience">
+                </div>
+            </div>
+
+            <!-- DefenseTech Week -->
+            <h3 class="text-xl font-bold text-purple-400 mb-6 border-b border-gray-800 pb-2">DefenseTech Week</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="gallery-container relative group">
+                    <img src="images/דיפנס-טק%202025%20יום%202%20-%20צילום%20לנס%20הפקות%20170.jpg"
+                        class="gallery-photo" alt="DefenseTech Week 2025 Speaker">
+                </div>
+                <div class="gallery-container relative group">
+                    <img src="images/דיפנס-טק%202025%20יום%202%20-%20צילום%20לנס%20הפקות%20208.jpg"
+                        class="gallery-photo" alt="DefenseTech Week 2025 Panel">
+                </div>
+                <div class="gallery-container relative group">
+                    <img src="images/photo-chen%20galili%201.12.25-1362.JPG" class="gallery-photo"
+                        alt="DefenseTech Week Audience">
+                </div>
+                <div class="gallery-container relative group">
+                    <img src="images/photo-chen%20galili%201.12.25-1272.JPG" class="gallery-photo"
+                        alt="DefenseTech Week Exhibit">
+                </div>
+            </div>
+        </div>
+
+        <p class="text-sm text-gray-400 text-right mt-2 mb-16">&copy; Photos by Chen Galili</p>
+
+        <!-- Global Focus / Media Coverage -->
+        <div class="mt-16 text-center fade-in-section max-w-5xl mx-auto px-4">
+            <h3 class="text-2xl font-bold text-white mb-6">Global Focus</h3>
+            <p class="text-lg text-gray-300 leading-relaxed font-light">
+                Our flagship conferences draw global attention. Following DefenseTech Week, over 30 leading
+                international media outlets featured the event, including The Wall Street Journal, NPR, and Agence
+                France-Presse. The extensive coverage highlighted Israel's rapid evolution into a premier defense
+                tech nation. Reports celebrated a record breaking year with over 1 billion dollars invested in
+                Israeli startups. Reporters explored hot topics discussed at the summit like AI in modern warfare,
+                defending against drone swarms, and breakthrough innovations like the Iron Beam laser system. This
+                widespread media footprint highlights our role at the forefront of global security.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         RESEARCH ENGINE / GRANTS — Enhanced framing
+         ============================================================ -->
+    <section class="py-24 bg-navy-900 relative z-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in-section">
+            <h2 class="text-sm font-bold tracking-widest text-gold-500 uppercase mb-3">The Research Engine</h2>
+            <h3 class="text-3xl md:text-5xl font-display font-bold text-white mb-8">2025 New Grants</h3>
+            <p class="max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed font-light mb-12">
+                Beyond its own breakthroughs, the ICRC fuels a broader research pipeline. In 2025, six new grants were awarded from a highly competitive pool, advancing the intersections of cybersecurity, AI, intelligent systems, and digital trust across the university community.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+                <div class="glass-card rounded-2xl p-6 group">
+                    <h4 class="text-lg font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
+                        Extinguishing the Fire of Misinformation: A Hybrid Human-AI Approach for Impactful Counter
+                        Narratives</h4>
+                    <p class="text-sm text-gray-400 mb-1"><strong>PI:</strong> <a
+                            href="https://english.tau.ac.il/profile/bengal" target="_blank"
+                            class="link-interactive">Prof. Irad Ben-Gal</a></p>
+                    <p class="text-xs text-gray-500 mt-2">School of Industrial Engineering, TAU</p>
+                </div>
+                <div class="glass-card rounded-2xl p-6 group">
+                    <h4 class="text-lg font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">A Novel
+                        Approach to Adversarial Generative AI Detection Using Cognitive Biases</h4>
+                    <p class="text-sm text-gray-400 mb-1"><strong>PI:</strong> <a
+                            href="https://english.tau.ac.il/profile/tomergev" target="_blank"
+                            class="link-interactive">Prof. Tomer Geva</a></p>
+                    <p class="text-sm text-gray-400 mb-1"><strong>Co-PI:</strong> <a
+                            href="https://en.cognitive.huji.ac.il/people/ariel-goldstein" target="_blank"
+                            class="link-interactive">Dr. Ariel Goldstein</a></p>
+                    <p class="text-xs text-gray-500 mt-2">Coller School of Management, TAU / Hebrew University</p>
+                </div>
+                <div class="glass-card rounded-2xl p-6 group">
+                    <h4 class="text-lg font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">Reducing
+                        Hallucinations and Jailbreak Vulnerabilities in Visual Language Models</h4>
+                    <p class="text-sm text-gray-400 mb-1"><strong>PI:</strong> <a
+                            href="https://english.tau.ac.il/profile/raja" target="_blank" class="link-interactive">Prof.
+                            Raja Giryes</a></p>
+                    <p class="text-xs text-gray-500 mt-2">School of Electrical Engineering, TAU</p>
+                </div>
+                <div class="glass-card rounded-2xl p-6 group">
+                    <h4 class="text-lg font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">Securing
+                        the Future of AI in Healthcare</h4>
+                    <p class="text-sm text-gray-400 mb-1"><strong>PI:</strong> <a
+                            href="https://english.tau.ac.il/profile/mahmoods" target="_blank"
+                            class="link-interactive">Dr. Mahmood Sharif</a></p>
+                    <p class="text-sm text-gray-400 mb-1"><strong>Co-PI:</strong> <a
+                            href="https://english.tau.ac.il/profile/anatbr" target="_blank"
+                            class="link-interactive">Prof. Anat Bremler-Barr</a></p>
+                    <p class="text-xs text-gray-500 mt-2">School of Computer Science and AI, TAU</p>
+                </div>
+                <div class="glass-card rounded-2xl p-6 group">
+                    <h4 class="text-lg font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">Enhancing
+                        AI Model Security through Cryptography</h4>
+                    <p class="text-sm text-gray-400 mb-1"><strong>PI:</strong> <a
+                            href="https://en-cyber.tau.ac.il/profile/yaniv.c.harel_67" target="_blank"
+                            class="link-interactive">Dr. Yaniv Harel</a></p>
+                    <p class="text-sm text-gray-400 mb-1"><strong>Co-PI:</strong> <a
+                            href="https://exact-sciences.tau.ac.il/computer-h/post_doctoral_fellows" target="_blank"
+                            class="link-interactive">Dr. Liron David</a></p>
+                    <p class="text-xs text-gray-500 mt-2">ICRC, TAU / School of Computer Science and AI, TAU</p>
+                </div>
+                <div class="glass-card rounded-2xl p-6 group">
+                    <h4 class="text-lg font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">A
+                        Theoretical Multi-agent Game for Comparing Ethical Decision-Making Frameworks</h4>
+                    <p class="text-sm text-gray-400 mb-1"><strong>PI:</strong> <a
+                            href="https://en-exact-sciences.tau.ac.il/profile/nachumd" target="_blank"
+                            class="link-interactive">Prof. Nachum Dershowitz</a></p>
+                    <p class="text-xs text-gray-500 mt-2">School of Computer Science and AI, TAU</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         THOUGHT LEADERSHIP / MEDIA (preserved + enhanced)
+         ============================================================ -->
+    <section class="py-24 bg-navy-800 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <hr class="gold-line mb-12">
+                <h2 class="text-sm font-bold tracking-widest text-gold-500 uppercase mb-3">Thought Leadership</h2>
+                <h3 class="text-3xl md:text-5xl font-display font-bold text-white mb-8">Public Engagement &amp; Media
+                    Visibility</h3>
+                <p class="max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed font-light mb-12">
+                    Prof. Isaac Ben-Israel, the leader of the ICRC and the Yuval Ne'eman Workshop for Science,
+                    Technology and Security, maintained a profound media presence throughout the year. As a Former
+                    Director of the Israel Space Agency; former head of the Administration for Research and Development
+                    of Weapons and Technological Infrastructure (MAFAT) at the Ministry of Defense, his commentary on
+                    advanced air defense, high-energy laser systems, space technologies, and drone threats provided
+                    crucial insight and national resilience during the ongoing security challenges.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in-section">
+                <a href="https://www.haaretz.co.il/st/inter/Global/magazine/Haaretz/2025/05/Defense_industries/FlipBook.html#p=1"
+                    target="_blank" class="glass-card rounded-2xl p-6 group cursor-pointer block">
+                    <div class="media-placeholder">
+                        <img src="images/impact2025_e37_dual-use_haaretz.png" alt="Dual Use Technologies">
+                    </div>
+                    <span
+                        class="inline-block px-3 py-1 bg-cyan-900/40 text-cyan-400 text-xs rounded-full font-semibold tracking-wider mb-3">Print
+                        Media</span>
+                    <h4
+                        class="text-xl font-display font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                        Dual Use Technologies</h4>
+                    <p class="text-xs text-gray-400 mb-2">Haaretz / TheMarker &bull; May 30, 2025</p>
+                    <p class="text-sm text-gray-300 font-light line-clamp-3">A broad framework on cyber and AI as
+                        dual-use technologies for defense and civilian purposes, and Israel's opportunity to lead the
+                        next revolution integrating both sectors.</p>
+                </a>
+                <a href="https://www.israelhayom.co.il/news/defense/article/18770928" target="_blank"
+                    class="glass-card rounded-2xl p-6 group cursor-pointer block">
+                    <div class="media-placeholder">
+                        <img src="images/impact2025_e4_ofek19_israelhayom.png" alt="Ofek 19">
+                    </div>
+                    <span
+                        class="inline-block px-3 py-1 bg-cyan-900/40 text-cyan-400 text-xs rounded-full font-semibold tracking-wider mb-3">Print
+                        Media</span>
+                    <h4
+                        class="text-xl font-display font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                        Ofek 19</h4>
+                    <p class="text-xs text-gray-400 mb-2">Israel Hayom &bull; Sep 05, 2025</p>
+                    <p class="text-sm text-gray-300 font-light line-clamp-3">Connecting Israel's space capabilities, spy
+                        satellites, and the 12-Day War, explaining the significance of qualitative superiority in
+                        intelligence and deterrence.</p>
+                </a>
+                <a href="https://youtu.be/L5vU9rdhOv0" target="_blank"
+                    class="glass-card rounded-2xl p-6 group cursor-pointer block">
+                    <div class="media-placeholder">
+                        <img src="images/impact2025_e27_iran-war_youtube.png" alt="The War with Iran">
+                    </div>
+                    <span
+                        class="inline-block px-3 py-1 bg-blue-900/40 text-blue-400 text-xs rounded-full font-semibold tracking-wider mb-3">Video</span>
+                    <h4
+                        class="text-xl font-display font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                        The War with Iran &amp; Technology</h4>
+                    <p class="text-xs text-gray-400 mb-2">YouTube &bull; Jun 22, 2025</p>
+                    <p class="text-sm text-gray-300 font-light line-clamp-3">Meeting with the President of the TAU
+                        Friends Association, discussing the Iranian nuclear threat, the regional arena, and advanced
+                        technology in Israeli strategy.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         MOVING FORWARD — Confident, forward-looking
+         ============================================================ -->
+    <section class="py-24 bg-navy-900 relative z-10 border-t border-gray-800 text-center fade-in-section">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <hr class="gold-line mb-12">
+            <h3 class="text-3xl md:text-5xl font-display font-bold text-white mb-6">Moving Forward</h3>
+            <p class="text-lg md:text-xl text-gray-300 leading-relaxed font-light mb-10">
+                2025 tested us, and we delivered. We are entering 2026 with sharper focus and deeper capability. The threats keep evolving. The Blavatnik ICRC is where the answers will come from. We invite you to partner with us in building the secure technologies of tomorrow.
+            </p>
+            <a href="https://icrc.tau.ac.il" target="_blank"
+                class="inline-flex items-center justify-center px-8 py-4 border border-gold-500/50 text-base font-medium rounded-full text-gold-400 bg-gold-900/20 hover:bg-gold-900/40 hover:border-gold-400 transition-all duration-300">
+                Stand With Us in 2026
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="bg-black py-12 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <span class="text-xl font-display font-bold text-white tracking-tight">ICRC <span
+                        class="text-gray-600">|</span> 2025 Impact Report</span>
+                <p class="text-gray-500 text-sm mt-1">Blavatnik Interdisciplinary Cyber Research Center</p>
+            </div>
+            <div class="text-gray-500 text-sm">
+                <p>Tel Aviv University &bull; Leading the Charge</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-section').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+
+</html>
