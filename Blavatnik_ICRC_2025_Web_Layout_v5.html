@@ -231,6 +231,10 @@
       margin-top: 6px
     }
 
+    .hero .kpi-card strong {
+      color: #e7c46d;
+    }
+
     .kpi-card .label {
       display: block;
       margin-top: 10px;
@@ -451,6 +455,14 @@
 
     .pivot {
       background: linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .015))
+    }
+
+    section.tone-a {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .015));
+    }
+
+    section.tone-b {
+      background: linear-gradient(180deg, rgba(79, 209, 222, .055), rgba(157, 135, 255, .03));
     }
 
     .conf-gallery {
@@ -891,7 +903,7 @@
       <a href="#media" class="nav-dot" data-target="media"><span>Media</span></a>
       <a href="#connect" class="nav-dot" data-target="connect"><span>Contact</span></a>
     </nav>
-    <section id="year" style="padding:48px 0; border-bottom: 1px solid var(--line);">
+    <section id="year" class="tone-a" style="padding:48px 0; border-bottom: 1px solid var(--line);">
       <div class="wrap" style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
         <div style="flex:1;min-width:200px;text-align:center;padding:14px 8px;">
           <span
@@ -913,7 +925,7 @@
       </div>
     </section>
 
-    <section id="center">
+    <section id="center" class="tone-b">
       <div class="wrap about-grid">
         <div>
           <div class="kicker">The Center</div>
@@ -985,7 +997,7 @@
       </div>
     </section>
 
-    <section id="grants">
+    <section id="grants" class="tone-a">
       <div class="wrap grants">
         <div>
           <div class="kicker">Funding new science</div>
@@ -1038,7 +1050,7 @@
       </div>
     </section>
 
-    <section id="highlights">
+    <section id="highlights" class="tone-b">
       <div class="wrap">
         <div class="section-head">
           <div>
@@ -1128,7 +1140,7 @@
       </div>
     </section>
 
-    <section class="pivot" id="conferences">
+    <section class="pivot tone-a" id="conferences">
       <div class="wrap">
         <div class="section-head">
           <div>
@@ -1220,7 +1232,7 @@
 
 
 
-    <section id="media">
+    <section id="media" class="tone-b">
       <div class="wrap">
         <div class="section-head">
           <div>
@@ -1265,7 +1277,7 @@
       </div>
     </section>
 
-    <section id="connect">
+    <section id="connect" class="tone-a">
       <div class="wrap">
         <div class="section-head">
           <div>
@@ -1291,7 +1303,7 @@
       </div>
     </section>
 
-    <section style="border-top: 1px solid var(--line); padding: 60px 0;">
+    <section class="tone-b" style="border-top: 1px solid var(--line); padding: 60px 0;">
       <div class="wrap">
         <div style="text-align: center; max-width: 800px; margin: 0 auto;">
           <h3 style="margin-bottom: 24px;">Looking forward to a great year, from the entire team.</h3>
@@ -1485,26 +1497,82 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const sections = document.querySelectorAll("header[id], section[id]");
-      const navDots = document.querySelectorAll(".nav-dot");
+      const sections = Array.from(document.querySelectorAll("header[id], section[id]"));
+      const navDots = Array.from(document.querySelectorAll(".nav-dot"));
+      const navById = new Map(
+        navDots
+          .map((dot) => {
+            const href = dot.getAttribute("href") || "";
+            const id = href.startsWith("#") ? href.slice(1) : "";
+            return [id, dot];
+          })
+          .filter(([id]) => id)
+      );
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navDots.forEach(dot => {
-              dot.classList.remove('active');
-              if (dot.getAttribute('href') === `#${entry.target.id}`) {
-                dot.classList.add('active');
-              }
-            });
+      function setActive(id) {
+        navDots.forEach((dot) => dot.classList.remove("active"));
+        const activeDot = navById.get(id);
+        if (activeDot) activeDot.classList.add("active");
+      }
+
+      function sectionAtCenter() {
+        const centerY = window.innerHeight * 0.5;
+
+        // Primary rule: section currently crossing viewport center.
+        for (const section of sections) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= centerY && rect.bottom >= centerY) return section;
+        }
+
+        // Fallback: closest section top to center.
+        let closest = null;
+        let minDistance = Infinity;
+        for (const section of sections) {
+          const rect = section.getBoundingClientRect();
+          const distance = Math.abs(rect.top - centerY);
+          if (distance < minDistance) {
+            minDistance = distance;
+            closest = section;
           }
-        });
-      }, {
-        rootMargin: "-20% 0px -60% 0px",
-        threshold: 0
-      });
+        }
+        return closest;
+      }
 
-      sections.forEach(sec => observer.observe(sec));
+      function updateActiveNav() {
+        const activeSection = sectionAtCenter();
+        if (!activeSection) return;
+
+        if (navById.has(activeSection.id)) {
+          setActive(activeSection.id);
+          return;
+        }
+
+        // If center is on a section without nav item, use the latest nav-mapped section above center.
+        const centerY = window.innerHeight * 0.5;
+        let candidate = null;
+        for (const section of sections) {
+          if (!navById.has(section.id)) continue;
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= centerY) candidate = section.id;
+        }
+
+        if (candidate) setActive(candidate);
+      }
+
+      let ticking = false;
+      function requestUpdate() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(() => {
+          updateActiveNav();
+          ticking = false;
+        });
+      }
+
+      window.addEventListener("scroll", requestUpdate, { passive: true });
+      window.addEventListener("resize", requestUpdate);
+      window.addEventListener("hashchange", requestUpdate);
+      requestUpdate();
     });
   </script>
 </body>
